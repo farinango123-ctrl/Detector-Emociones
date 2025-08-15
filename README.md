@@ -1,0 +1,2 @@
+# Detector-Emociones
+Emociones
