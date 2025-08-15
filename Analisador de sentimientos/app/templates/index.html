@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Esta sección de  el título y estilos -->
+    <meta charset="utf-8" />
+    <title>Analizador de Emociones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="{{ url_for('static', filename='img/89.png') }}"
+        alt="Logo del Instituto"
+        class="logo"
+      />
+
+      <h1>Bienvenido al detector de emociones</h1>
+      <h2>Escribe tu frase</h2>
+
+      <form method="POST" action="{{ url_for('index') }}">
+        <label for="texto" class="sr-only">Frase a analizar</label>
+        <textarea
+          id="texto"
+          name="texto"
+          placeholder="Ej: Me siento feliz hoy"
+          required
+        >
+{{ request.form.get('texto', '') }}</textarea
+        >
+
+        <button type="submit">Analizar emoción</button>
+      </form>
+
+      {% if emocion %}
+      <div class="resultados" aria-live="polite" aria-atomic="true">
+        <h2 class="emocion-principal">
+          Emoción detectada: {{ emocion }} {{ emoji }}
+        </h2>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
